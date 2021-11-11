@@ -17,7 +17,7 @@ TAG ?= devel
 TOOLCHAIN_TAG ?= 0.5.0
 KERNEL_VERSION ?= 5.5.19-ctsi-2
 RISCV_PK_VERSION ?= 1.0.0-ctsi-1
-KERNEL_CONFIG ?= configs/default-linux-config
+KERNEL_CONFIG ?= configs/zippie-linux-config
 
 CONTAINER_BASE := /opt/cartesi/image-linux-kernel
 
