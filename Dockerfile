@@ -12,7 +12,7 @@
 #
 
 ARG TOOLCHAIN_VERSION=latest
-FROM cartesi/toolchain:${TOOLCHAIN_VERSION}
+FROM cartesi/toolchain:${TOOLCHAIN_VERSION} AS buildstep
 
 LABEL maintainer="Diego Nehab <diego@cartesi.io>"
 
@@ -81,4 +81,8 @@ USER root
 
 WORKDIR $BASE
 
-CMD ["/bin/bash", "-l"]
+FROM scratch
+ARG KERNEL_VERSION=5.5.19-ctsi-2
+
+ENV BUILD_BASE=/opt/riscv/kernel
+COPY --from=buildstep ${BUILD_BASE}/artifacts/linux-${KERNEL_VERSION}.bin ${BUILD_BASE}/artifacts/linux-${KERNEL_VERSION}.bin
