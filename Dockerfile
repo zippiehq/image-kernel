@@ -48,9 +48,9 @@ COPY cartesi-linux-config $BUILD_BASE/linux-${KERNEL_VERSION}/cartesi-linux-conf
 RUN \
     cd ${BUILD_BASE}/linux-${KERNEL_VERSION} && \
     cp cartesi-linux-config .config && \
-    make ARCH=riscv CROSS_COMPILE=riscv64-cartesi-linux-gnu- olddefconfig && \
-    make ARCH=riscv CROSS_COMPILE=riscv64-cartesi-linux-gnu- -j$(nproc) vmlinux && \
-    make ARCH=riscv CROSS_COMPILE=riscv64-cartesi-linux-gnu- INSTALL_HDR_PATH=/opt/riscv/kernel/linux-headers-${KERNEL_VERSION} headers_install && \
+    KBUILD_BUILD_TIMESTAMP=0 KBUILD_BUILD_USER=root KBUILD_BUILD_HOST=localhost make ARCH=riscv CROSS_COMPILE=riscv64-cartesi-linux-gnu- olddefconfig && \
+    KBUILD_BUILD_TIMESTAMP=0 KBUILD_BUILD_USER=root KBUILD_BUILD_HOST=localhost make ARCH=riscv CROSS_COMPILE=riscv64-cartesi-linux-gnu- -j$(nproc) vmlinux && \
+    KBUILD_BUILD_TIMESTAMP=0 KBUILD_BUILD_USER=root KBUILD_BUILD_HOST=localhost make ARCH=riscv CROSS_COMPILE=riscv64-cartesi-linux-gnu- INSTALL_HDR_PATH=/opt/riscv/kernel/linux-headers-${KERNEL_VERSION} headers_install && \
     cd ${BUILD_BASE} && \
     tar -cJf artifacts/linux-headers-${KERNEL_VERSION}.tar.xz linux-headers-${KERNEL_VERSION}
 
