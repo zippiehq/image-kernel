@@ -78,6 +78,7 @@ RUN \
     truncate -s %4096 ${BUILD_BASE}/artifacts/linux-${KERNEL_VERSION}.bin
 
 USER root
+RUN sha256sum ${BUILD_BASE}/artifacts/linux-${KERNEL_VERSION}.bin
 
 WORKDIR $BASE
 
