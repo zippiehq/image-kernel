@@ -43,7 +43,7 @@ RUN \
     tar -zxvf linux-${KERNEL_VERSION}.tar.gz && \
     rm -f linux-${KERNEL_VERSION}.tar.gz
 
-COPY cartesi-linux-config $BUILD_BASE/linux-${KERNEL_VERSION}/cartesi-linux-config
+COPY configs/zippie-linux-config $BUILD_BASE/linux-${KERNEL_VERSION}/cartesi-linux-config
 
 RUN \
     cd ${BUILD_BASE}/linux-${KERNEL_VERSION} && \
