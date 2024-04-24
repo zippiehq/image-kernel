@@ -48,6 +48,7 @@ $(LINUX_DIR)/vmlinux $(IMAGE) $(HEADERS) &: $(LINUX_DIR)/.config
 	tar --sort=name --mtime="$(KERNEL_TIMESTAMP)" --owner=1000 --group=1000 --numeric-owner -cJf $(HEADERS) -C $(abspath work/linux-headers) .
 	cp work/linux/arch/riscv/boot/Image $(IMAGE)
 	cp $(LINUX_DIR)/vmlinux $(LINUX_ELF)
+	cp $(LINUX_DIR)/.config artifacts/config
 
 $(LINUX_DIR)/.config:
 	$(MAKE) -rC $(LINUX_DIR) $(LINUX_OPTS) cartesi_defconfig
